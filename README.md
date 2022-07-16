@@ -2,8 +2,9 @@
 
 
 MyRead is a web application that allows users to:
-    -catagorize and sort their books into different shelfes
-    -search for books to add to thier shelfes
+
+* catagorize and sort their books into different shelfes.
+* search for books to add to thier shelfes.
 
 ## Installation
 
