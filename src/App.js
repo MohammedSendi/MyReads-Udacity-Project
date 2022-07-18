@@ -4,6 +4,7 @@ import BookList from "./BookList";
 import * as BooksAPI from "./BooksAPI";
 import { Route, Routes } from "react-router";
 import SearchBook from "./SearchBook";
+import { debounce } from 'throttle-debounce';
 
 function App() {
   
@@ -22,15 +23,13 @@ function App() {
 
     let updatedBooks = [];
     updatedBooks = myBooks.filter(b => b.id !== book.id);
-    if (shelf !== 'none') {
-      book.shelf = shelf;
-      updatedBooks = updatedBooks.concat(book);
-    }
+    book.shelf = shelf;
+    updatedBooks = updatedBooks.concat(book);
     setMyBooks(updatedBooks);
   } 
 
 
-  const searchForBooks = (query) => {
+  const searchForBooks = debounce(300, false, query => {
     if (query.length > 0) {
       BooksAPI.search(query).then(books => {
         if (books.error) {
@@ -42,7 +41,7 @@ function App() {
     } else {
       setSearchbooks([]);
     }
-  };
+  });
 
   const onResetSearch = () => {
     setSearchbooks([] );

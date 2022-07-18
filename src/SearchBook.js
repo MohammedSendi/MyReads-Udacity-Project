@@ -47,7 +47,7 @@ const SearchBook = ({searchBooks, myBooks, onSearch, onResetSearch, onUpdateBook
           <Book
             key={book.id}
             book={book}
-            shelf={book.shelf ? book.shelf : 'none'}
+            shelf={book.shelf ? book.shelf : "none"}
             onUpdateBook={onUpdateBook}
           />
         ))}
