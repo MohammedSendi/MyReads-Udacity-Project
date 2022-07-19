@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Book from "./Book";
 import BookShelfChanger from "./BookShelfChanger";
 import * as BooksAPI from "./BooksAPI";
 import {Container, Row, Col} from 'react-bootstrap';
+import propTypes from 'prop-types';
 
 const BookDetails = ({onUpdateBook}) => {
 
     const { bookID } = useParams();
 
-    const [book, setBook] = useState("");
+    const [book, setBook] = useState({});
 
     useEffect(()=>{
         BooksAPI.get(bookID).then(book => setBook(book))
-    },[])
-    console.log(book)
+    },[bookID])
+
     return <Container >
         <Row>
             <Col>
@@ -53,6 +53,10 @@ const BookDetails = ({onUpdateBook}) => {
         </Row>
     </Container>
 
+}
+
+BookDetails.propTypes = {
+    onUpdateBook: propTypes.func.isRequired,
 }
 
 export default BookDetails;

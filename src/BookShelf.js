@@ -24,7 +24,9 @@ const BookShelf = ({shelf, myBooks, onUpdateBook}) => {
 }
 BookShelf.propTypes = {
   onUpdateBook: propTypes.func.isRequired,
-  myBooks: propTypes.array.isRequired
+  myBooks: propTypes.array.isRequired,
+  shelf: propTypes.object.isRequired
+
 }
 
 export default BookShelf;

@@ -9,7 +9,7 @@ const BookShelfChanger = ({onUpdateBook, shelf, book}) => {
     setMyshelf( event.target.value );
     onUpdateBook(book, event.target.value);
   };
-
+  
   return <div className="book-shelf-changer">
     <select onChange={handleChangeShelf} value={myshelf}>
       <option disabled>
