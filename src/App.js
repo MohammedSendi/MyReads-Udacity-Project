@@ -5,6 +5,8 @@ import * as BooksAPI from "./BooksAPI";
 import { Route, Routes } from "react-router";
 import SearchBook from "./SearchBook";
 import { debounce } from 'throttle-debounce';
+import BookDetails from "./BookDetails";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   
@@ -27,7 +29,6 @@ function App() {
     updatedBooks = updatedBooks.concat(book);
     setMyBooks(updatedBooks);
   } 
-
 
   const searchForBooks = debounce(300, false, query => {
     if (query.length > 0) {
@@ -61,13 +62,32 @@ function App() {
         <Route
           exact path="/"
           element={      
-            <BookList bookShelves={bookshelves} myBooks={myBooks} onUpdateBook={onUpdateBook}/>
+            <BookList 
+              bookShelves={bookshelves} 
+              myBooks={myBooks} 
+              onUpdateBook={onUpdateBook}
+            />
           }
         />
         <Route
           path="/search"
           element={
-            <SearchBook searchBooks={searchBooks} myBooks={myBooks} onUpdateBook={onUpdateBook} onSearch={searchForBooks} onResetSearch={onResetSearch}/>
+            <SearchBook 
+              searchBooks={searchBooks} 
+              myBooks={myBooks} 
+              onUpdateBook={onUpdateBook} 
+              onSearch={searchForBooks} 
+              onResetSearch={onResetSearch}
+            />
+          }
+        />
+        <Route
+          path="/book/:bookID"
+          element={
+            <BookDetails 
+              onUpdateBook={onUpdateBook}
+              myBooks={myBooks}
+            />
           }
         />
     </Routes>
